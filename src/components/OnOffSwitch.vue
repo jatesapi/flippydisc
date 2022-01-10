@@ -1,6 +1,6 @@
 <template>
-  <n-form-item :label="label" size="large" label-style="font-weight: 400">
-    <n-switch v-model:value="toggle"/>
+  <n-form-item :label="label" label-style="font-weight: 400">
+    <n-switch class="toggle-btn" size="small" v-model:value="toggle"/>
   </n-form-item>
 </template>
 
@@ -19,3 +19,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.toggle-btn {
+  --n-rail-color-active: #FF69B4 !important;
+}
+</style>
