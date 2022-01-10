@@ -1,0 +1,8 @@
+{
+    "default": {
+        "differentConsecutiveShots": true,
+        "differentConsecutiveDiscs": true,
+        "shots": ["backhand", "forehand", "roller", "hyzer", "anhyzer", "wildcrad"],
+        "discs": ["putter", "midrange", "driver", "understable", "overstable", "wildcard"]
+    }
+}
