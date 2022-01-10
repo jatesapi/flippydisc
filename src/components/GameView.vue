@@ -38,8 +38,8 @@
 <script>
 import { Dice, SettingsSharp } from "@vicons/ionicons5";
 import { computed, defineComponent, ref } from "vue";
+import { useStore } from 'vuex'
 import GameSettings from './GameSettings.vue'
-import settings from "../game-settings.json";
 
 export default defineComponent({
   components: {
@@ -48,16 +48,24 @@ export default defineComponent({
     GameSettings,
   },
   setup() {
+    const store = useStore()
+    const settings = computed(() => store.state.gameSettings)
+    
     const randomItem = (array) =>
       array[Math.floor(Math.random() * array.length)];
-    const shot = ref(randomItem(settings.default.shots));
-    const disc = ref(randomItem(settings.default.discs));
+    const shot = ref(randomItem(settings.value.shots));
+    const disc = ref(randomItem(settings.value.discs));
+
     const roll = () => {
-      shot.value = randomItem(settings.default.shots);
-      disc.value = randomItem(settings.default.discs);
+      const previousShot = shot.value;
+      const previousDisc = disc.value;
+      shot.value = randomItem(settings.value.shots.filter(item => item != previousShot));
+      disc.value = randomItem(settings.value.discs.filter(item => item != previousDisc));
     };
+    
     const drawerWidth = computed(() => window.innerWidth < 402 ? window.innerWidth : 402)
     return {
+      settings,
       shot,
       disc,
       roll,
