@@ -9,10 +9,6 @@
       <n-button type="primary" size="large" :strong="true" @click="play"
         >Play now</n-button
       >
-      <p class="button-divider">or</p>
-      <n-button type="primary" size="large" :strong="true"
-        >Set up game</n-button
-      >
       <div class="dice-icon">
         <n-icon>
           <dice />
