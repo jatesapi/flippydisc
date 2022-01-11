@@ -4,43 +4,49 @@
       class="toggle-btn"
       size="small"
       :disabled="disabled"
-      v-model:value="settings[path()]"
+      v-model:value="active"
       @update:value="handleChange"
     />
   </n-form-item>
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   props: {
     label: { type: String, default: "" },
-    settingKey: { type: String, default: undefined },
+    mappedSetting: { type: String, default: undefined },
+    value: {type: Boolean, default: true}
   },
   setup(props, context) {
     const store = useStore();
     const settings = computed(() => store.state.gameSettings);
-    
-    const path = () => "differentConsecutive" + props.settingKey.charAt(0).toUpperCase() + props.settingKey.slice(1)
 
+    const active =  ref(props.value)
+
+    // Disable switch something
     const disabled = computed(() => {
-      if (!store.getters.hasEnoughOptions(props.settingKey)) {
-        store.commit({
-          type: "changeGameSetting",
-          setting: path(),
-          value: false,
-        });
+      if (!store.getters.hasEnoughOptions(props.mappedSetting)) {
         return true;
       }
       return undefined;
     });
 
+    // Inactivate the switch when disa
+    watch(disabled, (isDisabled) => {
+      if (isDisabled) {
+        active.value = false
+        context.emit("update:value", false)
+      }
+    });
+
     const handleChange = (value) => context.emit("update:value", value);
+
     return {
       settings,
-      path,
+      active,
       disabled,
       handleChange,
     };

@@ -3,11 +3,12 @@
     <n-icon v-if="webShareApiSupported" @click="share">
       <share-social />
     </n-icon>
-    <a href="https://www.github.com/">
+    <a href="https://github.com/jatesapi/flippydisc/">
       <n-icon>
         <logo-github />
       </n-icon>
     </a>
+    <span class="version">v0.1.0 alpha</span>
   </div>
 </template>
 
@@ -23,7 +24,6 @@ export default defineComponent({
   setup() {
     const webShareApiSupported = computed(() => navigator.share);
     const share = () => {
-      console.log("Share clicked");
       return navigator.share({
         title: "FlippyDisc",
         text: "Classic disc dice game in your device.",
@@ -43,7 +43,12 @@ export default defineComponent({
   margin-top: 5rem;
 }
 
-.footer i + a {
+.footer i + a,
+.footer a + span {
   margin-left: 8px;
+}
+
+.version {
+  font-size: 15px;
 }
 </style>

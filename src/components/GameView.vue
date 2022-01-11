@@ -91,6 +91,7 @@ export default defineComponent({
 <style scoped>
 .row {
   display: flex;
+  font-size: 22px;
 }
 .column {
   padding: 0 4px;

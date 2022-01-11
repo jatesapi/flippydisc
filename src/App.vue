@@ -45,7 +45,7 @@ export default defineComponent({
 }
 
 html {
-  background: #161C21;
+  background: #161c21;
 }
 
 body {
@@ -56,12 +56,14 @@ body {
   color: #3f505c;
 }
 
-a, a:visited {
-  color: #FF69B4;
+a,
+a:visited {
+  color: #ff69b4;
   text-decoration: none;
 }
 
-a:hover, a:visited:hover {
+a:hover,
+a:visited:hover {
   color: #80e7c4;
 }
 </style>

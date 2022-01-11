@@ -75,7 +75,7 @@ export default defineComponent({
 
 <style scoped>
 .subtitle {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .footer {

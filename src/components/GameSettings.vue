@@ -1,24 +1,26 @@
 <template>
   <n-form class="game-settings-form">
     <on-off-switch
-      settingKey="shots"
       label="Different shot type on every roll"
-      @update:value="handleSettingChange($event, 'differentConsecutiveShots')"
+      mapped-setting="shots"
+      :value="settings.differentConsecutiveShots"
+      @update:value="handleSettingChange('differentConsecutiveShots', $event)"
     />
     <on-off-switch
-      settingKey="discs"
       label="Different disc type on every roll"
-      @update:value="handleSettingChange($event, 'differentConsecutiveDiscs')"
+      mapped-setting="discs"
+      :value="settings.differentConsecutiveDiscs"
+      @update:value="handleSettingChange('differentConsecutiveDiscs', $event)"
     />
     <tag-select
       label="Shots"
       :items="settings.shots"
-      @update:value="handleSettingChange($event, 'shots')"
+      @update:value="handleSettingChange('shots', $event)"
     />
     <tag-select
       label="Discs"
       :items="settings.discs"
-      @update:value="handleSettingChange($event, 'discs')"
+      @update:value="handleSettingChange('discs', $event)"
     />
   </n-form>
 </template>
@@ -34,16 +36,12 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
-    const settings = computed(() => {
-      console.log("Settings computed prop called");
-      
-      return store.getters.gameSettings
-    });
+    const settings = computed(() => store.state.gameSettings);
 
-    const handleSettingChange = (settingValue, settingKey) => {
+    const handleSettingChange = (settingKey, settingValue) => {
       store.commit({
         type: "changeGameSetting",
-        setting: settingKey,
+        key: settingKey,
         value: settingValue,
       });
     };

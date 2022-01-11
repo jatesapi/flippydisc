@@ -1,5 +1,9 @@
 <template>
-  <n-form-item :label="tagsLabel" size="large" label-style="font-weight: 400">
+  <n-form-item
+    :label="dynamicLabel"
+    size="large"
+    label-style="font-weight: 400"
+  >
     <n-dynamic-tags v-model:value="tags" @update:value="handleChange" />
   </n-form-item>
 </template>
@@ -14,12 +18,12 @@ export default defineComponent({
   },
   setup(props, context) {
     const tags = ref(props.items);
-    const tagsLabel = computed(() => props.label + ": " + tags.value.length);
+    const dynamicLabel = computed(() => props.label + ": " + tags.value.length);
     const handleChange = (value) => context.emit("update:value", value);
 
     return {
-      tagsLabel,
       tags,
+      dynamicLabel,
       handleChange,
     };
   },

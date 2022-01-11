@@ -9,18 +9,13 @@ export const store = createStore({
     }
   },
   getters: {
-    gameSettings: (state) => {
-      console.log(state.gameSettings)
-      return state.gameSettings
-    },
     hasEnoughOptions: (state) => (key) => {
       return state.gameSettings[key]?.length > 1
     }
   },
   mutations: {
     changeGameSetting(state, payload) {
-      console.log(payload);
-      state.gameSettings[payload.setting] = payload.value
+      state.gameSettings[payload.key] = payload.value
     }
   }
 })
