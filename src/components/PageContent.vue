@@ -17,8 +17,8 @@
       <p style="margin-top: 0">
         The disc dice game has evolved a lot from the early days. We wanted to
         create an app that allows players to be creative with their shots, discs
-        and other game rules. Play the game for free from your mobile phone,
-        even when offline.
+        and other game rules. Play the game for free from your phone, even when
+        offline.
       </p>
       <p>
         Make sure to also check out the original disc dices from

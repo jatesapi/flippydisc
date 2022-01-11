@@ -1,13 +1,13 @@
 <template>
   <div>
-  <div class="shot row">
-    <span class="column label">shot</span>
-    <span class="column white-text">{{ shot }}</span>
-  </div>
-  <div class="disc row">
-    <span class="column label">disc</span>
-    <span class="column white-text">{{ disc }}</span>
-  </div>
+    <div class="shot row">
+      <span class="column label">shot</span>
+      <span class="column white-text">{{ shot }}</span>
+    </div>
+    <div class="disc row">
+      <span class="column label">disc</span>
+      <span class="column white-text">{{ disc }}</span>
+    </div>
   </div>
   <n-button type="primary" size="large" :strong="true" @click="roll">
     <template #icon>
@@ -38,8 +38,8 @@
 <script>
 import { Dice, SettingsSharp } from "@vicons/ionicons5";
 import { computed, defineComponent, ref } from "vue";
-import { useStore } from 'vuex'
-import GameSettings from './GameSettings.vue'
+import { useStore } from "vuex";
+import GameSettings from "./GameSettings.vue";
 
 export default defineComponent({
   components: {
@@ -48,29 +48,41 @@ export default defineComponent({
     GameSettings,
   },
   setup() {
-    const store = useStore()
-    const settings = computed(() => store.state.gameSettings)
-    
+    const store = useStore();
+    const settings = computed(() => store.state.gameSettings);
+
     const randomItem = (array) =>
       array[Math.floor(Math.random() * array.length)];
     const shot = ref(randomItem(settings.value.shots));
     const disc = ref(randomItem(settings.value.discs));
 
     const roll = () => {
-      const previousShot = shot.value;
-      const previousDisc = disc.value;
-      shot.value = randomItem(settings.value.shots.filter(item => item != previousShot));
-      disc.value = randomItem(settings.value.discs.filter(item => item != previousDisc));
+      let shots = [...settings.value.shots];
+      if (settings.value.differentConsecutiveShots) {
+        const previousItem = shot.value;
+        shots = shots.filter((item) => item != previousItem);
+      }
+      shot.value = randomItem(shots);
+
+      let discs = [...settings.value.discs];
+      if (settings.value.differentConsecutiveDiscs) {
+        const previousItem = disc.value;
+        discs = discs.filter((item) => item != previousItem);
+      }
+      disc.value = randomItem(discs);
     };
-    
-    const drawerWidth = computed(() => window.innerWidth < 402 ? window.innerWidth : 402)
+
+    const drawerWidth = computed(() =>
+      window.innerWidth < 402 ? window.innerWidth : 402
+    );
+
     return {
       settings,
       shot,
       disc,
       roll,
       showDrawer: ref(false),
-      drawerWidth
+      drawerWidth,
     };
   },
 });

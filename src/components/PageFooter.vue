@@ -28,7 +28,7 @@ export default defineComponent({
         title: "FlippyDisc",
         text: "Classic disc dice game in your device.",
         url: "https://flippydisc.com/",
-      })
+      });
     };
     return {
       webShareApiSupported,
