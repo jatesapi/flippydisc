@@ -8,7 +8,7 @@
         <logo-github />
       </n-icon>
     </a>
-    <span class="version">v0.1.0 alpha</span>
+    <div class="version">v0.1.0 alpha</div>
   </div>
 </template>
 
@@ -43,12 +43,21 @@ export default defineComponent({
   margin-top: 5rem;
 }
 
+.footer i {
+  color: #ff69b4;
+}
+
+.footer i:hover {
+  color: #80e7c4;
+  cursor: pointer;
+}
+
 .footer i + a,
 .footer a + span {
   margin-left: 8px;
 }
 
 .version {
-  font-size: 15px;
+  font-size: 14px;
 }
 </style>

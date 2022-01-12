@@ -1,26 +1,26 @@
 <template>
   <transition name="slide-fade">
     <div v-if="showMenu">
-      <div class="subtitle">
-        Classic disc dice game to spice up your round of disc golf. Highly
-        customizable settings make sure the game fits for your throws and disc
-        selection.
-      </div>
-      <n-button type="primary" size="large" :strong="true" @click="play"
+      <h3 class="section-title">Disc dice game as an app</h3>
+      <p class="section-content">
+        Spice up your round of disc golf with the classic disc dice game. Play the game for free from your phone, even when
+        offline.
+      </p>
+      <n-button class="section-divider" type="primary" size="large" :strong="true" @click="play"
         >Play now</n-button
       >
-      <div class="dice-icon">
+      <h3 class="section-title">Highly customizable settings</h3>
+      <p class="section-content" style="margin-bottom: 0.55rem">
+        The disc dice game has evolved a lot from the early days. We wanted to
+        create an app that allows players to be creative with their shots, discs
+        and other game rules.
+      </p>
+            <div class="dice-icon">
         <n-icon>
           <dice />
         </n-icon>
       </div>
-      <p style="margin-top: 0">
-        The disc dice game has evolved a lot from the early days. We wanted to
-        create an app that allows players to be creative with their shots, discs
-        and other game rules. Play the game for free from your phone, even when
-        offline.
-      </p>
-      <p>
+       <p>
         Make sure to also check out the original disc dices from
         <a href="https://www.discdice.us/">DiscDice</a>
       </p>
@@ -74,7 +74,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.subtitle {
+.section-title {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+}
+
+.section-content {
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -86,15 +93,13 @@ export default defineComponent({
   --n-font-size: 20px;
 }
 
-.button-divider {
-  margin: 0.5rem 0;
-  font-size: 18px;
+.section-divider {
+  margin-bottom: 2rem;
 }
 
 .dice-icon {
-  color: white;
+  color: #80e7c4;
   font-size: 40px;
-  margin-top: 3rem;
 }
 
 .fade-enter-active,

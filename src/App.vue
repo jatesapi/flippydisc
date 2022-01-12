@@ -37,11 +37,17 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
-  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-family: v-sans, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 1.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  #app {
+    margin-top: 0;
+  }
 }
 
 html {
