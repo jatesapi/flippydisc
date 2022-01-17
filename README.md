@@ -1,5 +1,9 @@
 # flippydisc
 
+## Live
+
+https://flippydisc.netlify.app/
+
 ## Project setup
 ```
 npm install
