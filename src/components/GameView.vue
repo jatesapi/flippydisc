@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="shot row">
-      <span class="column label">shot</span>
-      <span class="column white-text">{{ shot }}</span>
-    </div>
-    <div class="disc row">
-      <span class="column label">disc</span>
-      <span class="column white-text">{{ disc }}</span>
-    </div>
+  <div class="dice-container">
+    <game-dice class="green">
+      {{ disc }}
+    </game-dice>
+    <game-dice class="pink">
+      {{ shot }}
+    </game-dice>
   </div>
   <n-button type="primary" size="large" :strong="true" @click="roll">
     <template #icon>
@@ -40,12 +38,14 @@ import { Dice, SettingsSharp } from "@vicons/ionicons5";
 import { computed, defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import GameSettings from "./GameSettings.vue";
+import GameDice from "./GameDice.vue";
 
 export default defineComponent({
   components: {
     Dice,
     SettingsSharp,
     GameSettings,
+    GameDice,
   },
   setup() {
     const store = useStore();
@@ -111,6 +111,16 @@ export default defineComponent({
   text-align: left;
 }
 button + button {
+  margin-left: 1rem;
+}
+.dice-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 1.8rem;
+}
+div.dice + div.dice {
   margin-left: 1rem;
 }
 </style>
